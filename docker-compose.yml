@@ -2,9 +2,10 @@ version: "3.7"
 services:
   app:
     build:
-      args:
-        user: islasgeci
-        uid: 1000
+      #Quite los argumentos para que pasara el GitHub Action
+      #args:
+        #user: islasgeci
+        #uid: 1000
       context: ./
       dockerfile: Dockerfile
     image: islasgeci

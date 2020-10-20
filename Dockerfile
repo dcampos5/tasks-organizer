@@ -1,8 +1,9 @@
 FROM php:7.4-fpm
 
 # Arguments defined in docker-compose.yml
-ARG user
-ARG uid
+# Se los puse aquí para que pase GitHub Action
+ARG user=islasgeci
+ARG uid=1000
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
