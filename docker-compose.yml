@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: islasgeci
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: islasgeci
+    container_name: islasgeci-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - islasgeci
+
+  nginx:
+    image: nginx:alpine
+    container_name: islasgeci-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - islasgeci
+
+networks:
+  islasgeci:
+    driver: bridge
