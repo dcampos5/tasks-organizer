@@ -5,6 +5,8 @@ FROM php:7.4-fpm
 ARG user=islasgeci
 ARG uid=1000
 
+#COPY ["composer.json", "composer.lock", "/var/www/"]
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -30,6 +32,11 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Set working directory
-WORKDIR /var/www
+#WORKDIR /var/www/
+
+#RUN composer install --no-scripts --no-autoloader
+#RUN composer install -d /var/www/ --no-scripts --no-autoloader
+
+#COPY . /var/www/
 
 USER $user
