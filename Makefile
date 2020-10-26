@@ -1,5 +1,5 @@
 .PHONY: format test mutants
 
 format:
-    @printf "Aquí va el formato"
-    cd ..
+@printf "Aquí va el formato"
+cd ..
