@@ -1,10 +1,10 @@
 .PHONY: format test mutants
 
 format:
-    @echo "Aquí va el formato"
+    @printf "Aquí va el formato"
 
 test:
-    @echo "Aquí va el test"
+    @printf "Aquí va el test"
 
 mutants:
-    @echo "Aquí va la mutacion"
+    @printf "Aquí va la mutacion"
