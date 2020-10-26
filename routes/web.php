@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'KataController@index');
+Route::post('/generate_kata', 'KataController@generateKata')->name('generate_katas');
