@@ -1,10 +1,11 @@
-.PHONY: format tests mutants
+.PHONY: fixed format mutants tests
 
 format:
 	./vendor/bin/phpcs
-	
-tests:
-	@echo "Aqui va el test"
+	./vendor/bin/phpcbf
 
 mutants:
 	@echo "Aqui va el mutants"
+	
+tests:
+	@echo "Aqui va el test"
