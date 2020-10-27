@@ -50,6 +50,4 @@ COPY ["composer.json", "composer.lock", "/var/www/html/"]
 RUN composer install --no-scripts --no-autoloader
 #RUN composer install -d /var/www/ --no-scripts --no-autoloader
 
-COPY . .
-
-# USER $user
+# COPY . .
