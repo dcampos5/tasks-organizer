@@ -1,32 +1,31 @@
 FROM php:7-apache
 
-USER root
-
-# Set working directory
-WORKDIR /var/www/html/
-
 # Arguments defined in docker-compose.yml
 # Se los puse aquí para que pase GitHub Action
 ARG user=islasgeci
 ARG uid=1000
 
-COPY ["composer.json", "composer.lock", "/var/www/html/"]
-
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
+RUN apt-get update && apt-get install --yes \
     curl \
-    libpng-dev \
+    git \
     libonig-dev \
+    libpng-dev \
     libxml2-dev \
-    zip \
-    unzip
+    unzip \
+    zip
 
 # Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm --force --recursive /var/lib/apt/lists/
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install \
+    bcmath \
+    exif \
+    gd \
+    mbstring \
+    pcntl \
+    pdo_mysql
 
 COPY apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 
@@ -43,9 +42,14 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user \
     && a2enmod rewrite
 
+# Set working directory
+WORKDIR /var/www/html/
+
+COPY ["composer.json", "composer.lock", "/var/www/html/"]
+
 RUN composer install --no-scripts --no-autoloader
 #RUN composer install -d /var/www/ --no-scripts --no-autoloader
 
-COPY . /var/www/html/
+COPY . .
 
 # USER $user

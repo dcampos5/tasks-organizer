@@ -11,7 +11,7 @@ services:
     image: islasgeci
     container_name: islasgeci-app
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./:/var/www/html/
       - ./var/www/html/vendor
