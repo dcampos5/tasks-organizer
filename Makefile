@@ -1,7 +1,7 @@
 .PHONY: format tests mutants
 
 format:
-	@echo "Aqui va el formato"
+	./vendor/bin/phpcs
 	
 tests:
 	@echo "Aqui va el test"
