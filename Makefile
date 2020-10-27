@@ -1,9 +1,9 @@
-.PHONY: format test mutants
+.PHONY: format tests mutants
 
 format:
 	@echo "Aqui va el formato"
 	
-test:
+tests:
 	@echo "Aqui va el test"
 
 mutants:
