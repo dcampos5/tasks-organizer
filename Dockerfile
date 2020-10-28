@@ -1,10 +1,5 @@
 FROM php:7-apache
 
-# Arguments defined in docker-compose.yml
-# Se los puse aquí para que pase GitHub Action
-ARG user=islasgeci
-ARG uid=1000
-
 # Install system dependencies
 RUN apt-get update && apt-get install --yes \
     curl \
@@ -36,6 +31,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # RUN chown -R www-data:www-data /var/www/html \
 #     && a2enmod rewrite
 
+# Arguments defined in docker-compose.yml
+# Se los puse aquí para que pase GitHub Action
+ARG user=islasgeci
+ARG uid=1000
+
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
@@ -45,9 +45,8 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www/html/
 
-COPY ["composer.json", "composer.lock", "/var/www/html/"]
+# COPY ["composer.json", "composer.lock", "/var/www/html/"]
+COPY . .
 
 RUN composer install --no-scripts --no-autoloader
 #RUN composer install -d /var/www/ --no-scripts --no-autoloader
-
-# COPY . .
