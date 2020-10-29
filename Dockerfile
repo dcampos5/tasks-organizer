@@ -48,5 +48,5 @@ WORKDIR /var/www/html/
 # COPY ["composer.json", "composer.lock", "/var/www/html/"]
 COPY . .
 
-RUN composer install --no-scripts --no-autoloader
+RUN composer install --no-scripts
 #RUN composer install -d /var/www/ --no-scripts --no-autoloader
