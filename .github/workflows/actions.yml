@@ -12,7 +12,7 @@ jobs:
     - name: Verifica el formato
       run: docker run islasgeci make format
     #  run: docker run --volume ${PWD}:/var/www/html/ islasgeci make format
-    #- name: Corre pruebas
-    #  run: docker run islasgeci make tests
+    - name: Corre pruebas
+      run: docker run islasgeci make tests
     #- name: Evalua resistencia a mutaciones
     #  run: docker run islasgeci make mutants
